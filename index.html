@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" /> 
+    <title>Library</title>
+</head>
+<body>
+  <h1 class="display-3">BIBLIOTECA</h1>
+  <table class="table table-dark table-striped" id="myTable">
+    <thead>
+      <tr>
+        <th scope="col">Título</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Nº de volúmenes</th>
+        <th scope="col">Editorial</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  
+  
+    <!--<div id="container">
+        <div id="library">
+            <div id="libroContent">
+                <h2>Título:</h2><div id="titulo"></div>
+                <h2>Autor:</h2><div id="autor"></div>
+                <h2>Volúmenes:</h2><div id="volumenes"></div>
+                <h2>Editorial:</h2><div id="paginas"></div>
+            </div>
+        </div> -->
+        <dialog id="mangaDialog">
+          <p>Introduce la información del manga</p>
+          <p class="dialogHeadings">Título del manga</p>
+          <input type="text" id="bookName" placeholder="Oyasumi Punpun">
+        
+          <p class="dialogHeadings">Nombre del autor</p>
+          <input type="text" id="authorName" placeholder="Inio Asano">
+        
+          <p class="dialogHeadings">Número de volúmenes</p>
+          <input type="text" id="numVolumenes" placeholder="12">
+        
+          <p class="dialogHeadings">Nombre de la editorial</p>
+          <select name="editorialName" id="editorialName">
+            <option value="Planeta">Planeta</option>
+            <option value="Norma" selected>Norma</option>
+            <option value="Milky Way">Milky Way</option>
+            <option value="ivrea">Ivrea</option>
+          </select>
+        
+          <br>
+          <button id="confirmBtn">Confirmar</button>
+          <button class="closeBtn" id="closeDialogBtn">Cerrar</button>
+        </dialog>
+          <button id="addManga" style="grid-column: 3 / 4; grid-row: 3 / 4; align-items: baseline;">Añade un libro</button>
+    </div>
+    <script src="script.js"></script>
+    </div>
+</body>
+</html>
