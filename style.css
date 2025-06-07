@@ -15,9 +15,14 @@ align-items: center;
 justify-items: center;
 }
 
-tbody, td, tfoot, th, thead, tr {
-    background-color: rgb(160, 209, 209);
+.btnDelete {
+    background-color: rgb(212, 212, 212);
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    
 }
+
 #libroContent {
     
     

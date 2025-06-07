@@ -1,38 +1,58 @@
 let myLibrary = [];
 
 function Book(titulo, autor, volumenes, editorialName) {
-
+  this.id = nextBookId++;
   this.titulo = titulo;
   this.autor = autor;
   this.volumenes = volumenes;
   this.editorialName = editorialName;
+  
 }
 
+//static property
+
+Book.prototype.read = false;
+let nextBookId = 1;
+
 function addToTable() {
-  
-  const titulo = document.getElementById("bookName").value;
-  const autor = document.getElementById("authorName").value;
-  const volumenes = document.getElementById("numVolumenes").value;
-  const editorialName = document.getElementById("editorialName").value;
+  const tableBody = document.querySelector("#myTable tbody");
+  tableBody.innerHTML = ''; // Limpiar contenido previo
 
-  const nuevoLibro = {
-    titulo,
-    autor,
-    volumenes,
-    editorialName
-  };
-
-  myLibrary.push(nuevoLibro);
-
-  document.querySelector("#myTable tbody").innerHTML = myLibrary.map(libro =>
-    `<tr>
+  myLibrary.forEach((libro, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
       <td>${libro.titulo}</td>
       <td>${libro.autor}</td>
       <td>${libro.volumenes}</td>
       <td>${libro.editorialName}</td>
-    </tr>`
-  ).join('');
+    `;
+
+    // Columna del checkbox "Leído"
+    const readCell = document.createElement("td");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = libro.read;
+    checkbox.addEventListener("change", () => {
+      libro.read = checkbox.checked;
+    });
+    readCell.appendChild(checkbox);
+    row.appendChild(readCell);
+
+    // Columna del botón "Eliminar"
+    const deleteCell = document.createElement("td");
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Eliminar";
+    deleteBtn.classList.add("btnDelete");
+    deleteBtn.addEventListener("click", () => {
+      myLibrary.splice(index, 1); // Eliminar del array
+      addToTable();               // Volver a renderizar
+    });
+    deleteCell.appendChild(deleteBtn);
+    row.appendChild(deleteCell);
+    tableBody.appendChild(row);
+  });
 }
+
 
 // Libros de ejemplo para añadir con .push
 let libro1 = {titulo: "Oyasumi Punpun", autor: "Inio Asano", volumenes: "12", editorialName: "Norma"}
@@ -60,7 +80,9 @@ document.getElementById("confirmBtn").addEventListener("click", function () {
   const editorialName = document.getElementById("editorialName").value;
 
   const newBook = new Book(name, author, volume, editorialName);
-  addToTable(newBook)
+
+  myLibrary.push(newBook);
+  addToTable();
 
   //Cerrar el diálogo
   document.querySelector("dialog").close();
